@@ -10,6 +10,9 @@ import (
 )
 
 func main() {
+	// Load config
+	config.LoadConfig()
+
 	// Initialize database
 	db := config.ConnectDB()
 	defer func() {

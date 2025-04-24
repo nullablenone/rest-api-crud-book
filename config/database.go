@@ -11,7 +11,9 @@ import (
 var DB *gorm.DB
 
 func ConnectDB() *gorm.DB {
-	dsn := "host=localhost user=postgres password=root dbname=db_books port=5432 sslmode=disable"
+	dsn := fmt.Sprintf("host=%s user=%s password=%s dbname=%s port=%s sslmode=%s",
+		AppConfig.DBHost, AppConfig.DBUser, AppConfig.DBPass, AppConfig.DBName, AppConfig.DBPort, AppConfig.DBSSLMode,
+	)
 	db, err := gorm.Open(postgres.Open(dsn), &gorm.Config{})
 	if err != nil {
 		log.Fatalf("Error connecting to database: %v", err)
